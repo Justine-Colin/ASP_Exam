@@ -1,0 +1,58 @@
+﻿@model ASP_Exam.Models.Livres
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Livres</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Auteur.A_Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Auteur.A_Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.L_Titre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.L_Titre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.L_Edition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.L_Edition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Serie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Serie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_LGenre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_LGenre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Livres }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

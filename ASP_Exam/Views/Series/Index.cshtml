@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ASP_Exam.Models.Series>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.S_Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.S_Taille)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.S_Fini)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.S_Complet)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.S_Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.S_Taille)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.S_Fini)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.S_Complet)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Serie }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Serie }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Serie })
+        </td>
+    </tr>
+}
+
+</table>

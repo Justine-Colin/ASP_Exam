@@ -1,0 +1,50 @@
+﻿@model ASP_Exam.Models.Series
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Series</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.S_Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.S_Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.S_Taille)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.S_Taille)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.S_Fini)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.S_Fini)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.S_Complet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.S_Complet)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Serie }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
