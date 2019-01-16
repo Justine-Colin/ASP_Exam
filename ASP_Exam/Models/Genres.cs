@@ -10,8 +10,10 @@ namespace ASP_Exam.Models
     {
         [Key]
         public int ID_Genres { get; set; }
+        [Required(ErrorMessage = "Le champs doit être rempli.")]
+        [Display(Name = "Genre")]
         public string G_Nom { get; set; }
 
-        public virtual ICollection<Liaisons_Genres> G_LGenre { get; set; }
+        public virtual ICollection<Liaisons_Genres> LGenre { get; set; }
     }
 }

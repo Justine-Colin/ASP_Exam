@@ -10,7 +10,6 @@ namespace ASP_Exam.Models
     {
         public DbSet<Auteurs> Auteurs { get; set; }        
         public DbSet<Genres> Genres { get; set; }
-        public DbSet<Liaisons_Genres> Liaisons_Genres { get; set; }
         public DbSet<Livres> Livres { get; set; }
         public DbSet<Series> Series { get; set; }
 

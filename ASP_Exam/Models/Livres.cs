@@ -10,13 +10,23 @@ namespace ASP_Exam.Models
     {
         [Key]
         public int ID_Livres { get; set; }
+        [Required(ErrorMessage = "Le champs doit être rempli.")]
+        [Display(Name = "Titre")]
         public string L_Titre { get; set; }
+        [Display(Name = "Edition")]
         public string L_Edition { get; set; }
+        [Required(ErrorMessage = "Le champs doit être rempli.")]
+        [Display(Name = "Auteur")]
         public int ID_Auteur { get; set; }
+        [Display(Name = "Serie")]
         public int ID_Serie { get; set; }
-        public int ID_LGenre { get; set; }
+        [Display(Name = "Genre")]
+        public int ID_Genre { get; set; }
+
+
 
         public virtual Auteurs Auteur { get; set; }
-        public virtual ICollection<Liaisons_Genres> LGenre { get; set; }
+        public virtual Series Serie { get; set; }
+        public virtual ICollection<Liaisons_Genres> ID_LGenre { get; set; }
     }
 }

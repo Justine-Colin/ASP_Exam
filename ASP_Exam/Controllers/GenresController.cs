@@ -48,14 +48,14 @@ namespace ASP_Exam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID_Genres,G_Nom")] Genres genres)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(genres);
+            else
             {
                 db.Genres.Add(genres);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(genres);
         }
 
         // GET: Genres/Edit/5
@@ -80,13 +80,14 @@ namespace ASP_Exam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID_Genres,G_Nom")] Genres genres)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(genres);
+            else
             {
                 db.Entry(genres).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(genres);
         }
 
         // GET: Genres/Delete/5

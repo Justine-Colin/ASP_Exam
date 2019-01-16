@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<ASP_Exam.Models.Auteurs>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Auteurs";
 }
 
-<h2>Index</h2>
+<h2>Auteurs</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Ajouter un auteur", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.A_Nom)
+            Nom
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.A_Prenom)
+            Prénom
         </th>
         <th></th>
     </tr>
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.A_Prenom)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Auteur }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Auteur }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Auteur })
+            @Html.ActionLink("Modifier", "Edit", new { id=item.ID_Auteur }) |
+            @Html.ActionLink("Afficher les détails", "Details", new { id=item.ID_Auteur }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.ID_Auteur })
         </td>
     </tr>
 }

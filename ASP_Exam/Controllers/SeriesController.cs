@@ -48,14 +48,14 @@ namespace ASP_Exam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID_Serie,S_Nom,S_Taille,S_Fini,S_Complet")] Series series)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(series);
+            else
             {
                 db.Series.Add(series);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(series);
         }
 
         // GET: Series/Edit/5
@@ -80,13 +80,14 @@ namespace ASP_Exam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID_Serie,S_Nom,S_Taille,S_Fini,S_Complet")] Series series)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(series);
+            else
             {
                 db.Entry(series).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(series);
         }
 
         // GET: Series/Delete/5

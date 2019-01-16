@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<h1>Ceci est ma bibliothèque</h1>
+<h2>A quoi voulez-vous accéder?</h2>
+<p>Veuillez d'abord encoder l'auteur et la série avant d'encoder les livres s'y rattachant.</p>
+<ul>
+    <li>@Html.ActionLink("Afficher la liste des livres", "Index", "Livres")</li>
+    <li>@Html.ActionLink("Afficher la liste des auteurs", "Index", "Auteurs")</li>
+    <li>@Html.ActionLink("Afficher la liste des séries", "Index", "Series")</li>
+    <li>@Html.ActionLink("Afficher la liste des genres", "Index", "Genres")</li>
+</ul>
+<p>Nous sommes le @ViewBag.date.ToString("dd/MM/yyyy")</p>
+
+@Ajax.ActionLink(linkText: "Afficher l'heure",
+                    actionName: "Heure",
+                    ajaxOptions: new AjaxOptions { UpdateTargetId = "ajaxtarget",
+                                                    InsertionMode = InsertionMode.Replace })
+
+<div id="ajaxtarget"></div>
+
+@if (ViewBag.Message != null)
+{
+    <p id=datejour>@ViewBag.Message</p>
+}

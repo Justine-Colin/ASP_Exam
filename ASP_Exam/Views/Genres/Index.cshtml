@@ -7,12 +7,12 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Ajouter", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.G_Nom)
+            Genres
         </th>
         <th></th>
     </tr>
@@ -23,9 +23,9 @@
             @Html.DisplayFor(modelItem => item.G_Nom)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Genres }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Genres }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Genres })
+            @Html.ActionLink("Modifier", "Edit", new { id=item.ID_Genres }) |
+          <!--  @Html.ActionLink("Détails", "Details", new { id=item.ID_Genres }) |-->
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.ID_Genres })
         </td>
     </tr>
 }

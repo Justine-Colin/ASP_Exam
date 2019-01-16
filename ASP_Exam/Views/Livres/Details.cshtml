@@ -19,6 +19,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Serie.S_Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Serie.S_Nom)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.L_Titre)
         </dt>
 
@@ -35,14 +43,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ID_Serie)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ID_Serie)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.ID_LGenre)
         </dt>
 
@@ -54,5 +54,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Livres }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour à la liste", "Index")
 </p>

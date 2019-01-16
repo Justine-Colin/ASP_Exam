@@ -48,14 +48,13 @@ namespace ASP_Exam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID_Auteur,A_Nom,A_Prenom")] Auteurs auteurs)
         {
-            if (ModelState.IsValid)
-            {
-                db.Auteurs.Add(auteurs);
+            if (!ModelState.IsValid)
+                return View(auteurs);
+            else db.Auteurs.Add(auteurs);
+            { 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(auteurs);
         }
 
         // GET: Auteurs/Edit/5
@@ -80,13 +79,14 @@ namespace ASP_Exam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID_Auteur,A_Nom,A_Prenom")] Auteurs auteurs)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(auteurs);
+            else db.Auteurs.Add(auteurs);
             {
                 db.Entry(auteurs).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(auteurs);
         }
 
         // GET: Auteurs/Delete/5

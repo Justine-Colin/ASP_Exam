@@ -20,6 +20,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Serie.S_Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Serie.S_Nom)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.L_Titre)
         </dt>
 
@@ -33,14 +41,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.L_Edition)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ID_Serie)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ID_Serie)
         </dd>
 
         <dt>
@@ -58,7 +58,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Retour à la liste", "Index")
         </div>
     }
 </div>

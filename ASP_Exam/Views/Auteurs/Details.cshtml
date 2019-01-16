@@ -1,17 +1,17 @@
 ﻿@model ASP_Exam.Models.Auteurs
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Détails";
 }
 
-<h2>Details</h2>
+<h2>Détails</h2>
 
 <div>
     <h4>Auteurs</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.A_Nom)
+            Nom
         </dt>
 
         <dd>
@@ -19,16 +19,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.A_Prenom)
+            Prénom
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.A_Prenom)
         </dd>
 
+        <dt>
+            Livres
+        </dt>
+
+        <dd>
+            @foreach (var Livre in Model.A_Livres)
+            {
+                @Html.DisplayFor(livre => Livre.L_Titre)
+                <br />
+            }
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Auteur }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.ID_Auteur }) |
+    @Html.ActionLink("Retour à la liste", "Index")
 </p>

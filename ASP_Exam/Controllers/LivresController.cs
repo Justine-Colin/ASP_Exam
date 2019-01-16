@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ASP_Exam.Models;
+using ASP_Exam.ViewModels;
 
 namespace ASP_Exam.Controllers
 {
@@ -14,10 +15,16 @@ namespace ASP_Exam.Controllers
     {
         private BiblioContext db = new BiblioContext();
 
+        private IDal dal = new Dal();
+        public LivresController() : this(new Dal())
+        { }
+        private LivresController(IDal dalIoc)
+        { dal = dalIoc; }
+
         // GET: Livres
         public ActionResult Index()
         {
-            var livres = db.Livres.Include(l => l.Auteur);
+            var livres = db.Livres.Include(l => l.Auteur).Include(l => l.Serie).Include(l => l.ID_LGenre).OrderBy(l => l.L_Titre);
             return View(livres.ToList());
         }
 
@@ -40,25 +47,30 @@ namespace ASP_Exam.Controllers
         public ActionResult Create()
         {
             ViewBag.ID_Auteur = new SelectList(db.Auteurs, "ID_Auteur", "A_Nom");
+            ViewBag.ID_Serie = new SelectList(db.Series, "ID_Serie", "S_Nom");
+            ViewBag.ID_Genres = new SelectList(db.Genres, "ID_Genres", "G_Nom");
             return View();
         }
 
         // POST: Livres/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID_Livres,L_Titre,L_Edition,ID_Auteur,ID_Serie,ID_LGenre")] Livres livres)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ID_Auteur = new SelectList(db.Auteurs, "ID_Auteur", "A_Nom", livres.ID_Auteur);
+                ViewBag.ID_Serie = new SelectList(db.Series, "ID_Serie", "S_Nom", livres.ID_Serie);
+                return View(livres);
+            }                
+            else
             {
                 db.Livres.Add(livres);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.ID_Auteur = new SelectList(db.Auteurs, "ID_Auteur", "A_Nom", livres.ID_Auteur);
-            return View(livres);
         }
 
         // GET: Livres/Edit/5
@@ -74,24 +86,32 @@ namespace ASP_Exam.Controllers
                 return HttpNotFound();
             }
             ViewBag.ID_Auteur = new SelectList(db.Auteurs, "ID_Auteur", "A_Nom", livres.ID_Auteur);
+            ViewBag.ID_Serie = new SelectList(db.Series, "ID_Serie", "S_Nom", livres.ID_Serie);
+            ViewBag.ID_Genres = new SelectList(db.Genres, "ID_Genres", "G_Nom");
             return View(livres);
         }
 
         // POST: Livres/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID_Livres,L_Titre,L_Edition,ID_Auteur,ID_Serie,ID_LGenre")] Livres livres)
         {
-            if (ModelState.IsValid)
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ID_Auteur = new SelectList(db.Auteurs, "ID_Auteur", "A_Nom", livres.ID_Auteur);
+                ViewBag.ID_Serie = new SelectList(db.Series, "ID_Serie", "S_Nom", livres.ID_Serie);
+                return View(livres);
+            }
+            else
             {
                 db.Entry(livres).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_Auteur = new SelectList(db.Auteurs, "ID_Auteur", "A_Nom", livres.ID_Auteur);
-            return View(livres);
+            
         }
 
         // GET: Livres/Delete/5
@@ -118,6 +138,28 @@ namespace ASP_Exam.Controllers
             db.Livres.Remove(livres);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET : Livres/Search/String
+        public ActionResult Search(string search)
+        {
+            if (search == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            RechercheVM RVM = new RechercheVM();
+            RVM.LLivres = dal.SearchLivre(search);
+            if (RVM.LLivres.Count() > 0)
+                return View(RVM);
+            return View();
+        }
+
+        // POST : Livres/Search/String
+        [HttpPost, ActionName("Search")]
+        [ValidateAntiForgeryToken]
+        public ActionResult a(int id)
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

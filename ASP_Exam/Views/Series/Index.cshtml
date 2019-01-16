@@ -7,21 +7,21 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Ajouter", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.S_Nom)
+            Titre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.S_Taille)
+            Nombre de tomes
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.S_Fini)
+            Tous possédés
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.S_Complet)
+            Parution terminée
         </th>
         <th></th>
     </tr>
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.S_Complet)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Serie }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Serie }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Serie })
+            @Html.ActionLink("Modifier", "Edit", new { id=item.ID_Serie }) |
+            @Html.ActionLink("Détails", "Details", new { id=item.ID_Serie }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.ID_Serie })
         </td>
     </tr>
 }
